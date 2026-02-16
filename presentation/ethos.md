@@ -16,6 +16,10 @@ Watch the [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) (gophercon 2015)
 
 This sometimes leads to more verbosity, but as a whole the language wants you to be explicit
 
+
+<br/>
+<br/>
+
 ### Beware the `interface{}` type - use only as a safety valve
 
 ```golang
@@ -47,7 +51,16 @@ func convertUser(u User) string {
 
 ### Handle Errors (vs. `panic`)
 
-Convention is to return errors as the last value from a function. This forces you to handle errors states where they occur. For the love of all that is sacred don't panic in libraries and if you do INFORM POTENTIAL USERS
+Convention is to return errors as the last value from a function. This forces you to handle errors states where they occur.
+
+```golang
+err := doSomething()
+if err != nil {
+    //handle error
+}
+```
+
+For the love of all that is sacred don't panic in libraries and if you do INFORM POTENTIAL USERS. If a function does not return an error, it will be assumed that the function CAN'T produce an error state.
 
 
 
