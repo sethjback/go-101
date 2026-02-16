@@ -8,15 +8,18 @@ Read, learn, love, live [go proverbs](https://go-proverbs.github.io/)
 
 Watch the [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) (gophercon 2015)
 
+<br/>
+<br/>
+<br/>
+
 ## Favor explicitness over implicitness (clear > clever)
 
 This sometimes leads to more verbosity, but as a whole the language wants you to be explicit
 
 ### Beware the `interface{}` type - use only as a safety valve
 
-BOO!
-
 ```golang
+// BOO!
 func convert(T interface{}) string {
     switch reflect.TypeOf(T) {
         ...
@@ -24,8 +27,8 @@ func convert(T interface{}) string {
 }
 ```
 
-Yay!
 ```golang
+// YAY!
 func covertInt(i int) string {
 
 }
@@ -39,9 +42,16 @@ func convertUser(u User) string {
 }
 ```
 
-### error handling (vs. `panic`)
+
+<br/>
+
+### Handle Errors (vs. `panic`)
 
 Convention is to return errors as the last value from a function. This forces you to handle errors states where they occur. For the love of all that is sacred don't panic in libraries and if you do INFORM POTENTIAL USERS
+
+
+
+<br/>
 
 ### Only require what you actually need as inputs to functions
 
@@ -66,9 +76,15 @@ func SaveUser(user *User, db *sql.Db, logger *logging.Logger) error {
 
 ```
 
+<br/>
+
 ### Avoid `init()`
 
 a safety vale that I have yet to run across a valid use for.
+
+<br/>
+<br/>
+<br/>
 
 ## Leverage the Standard Library
 
@@ -92,6 +108,10 @@ func Lower(s string) string {
 }
 ```
 
+<br/>
+<br/>
+<br/>
+
 ## Useful Zero Values
 
 Built in types all have "zero" values. E.g. `bools == false`, `int == 0`. When considering state, leverage the zero value's meaning.
@@ -101,6 +121,10 @@ type User struct{
     Admin bool // most users aren't admins.
 }
 ```
+
+<br/>
+<br/>
+<br/>
 
 ## Avoid Global state
 
@@ -116,21 +140,27 @@ package Example
 var user User // shared by the entire package, and your app if you bring in the package
 ```
 
-Counter example: `log` package
+Counter example: the `stdlib` `log` [package](https://cs.opensource.google/go/go/+/refs/tags/go1.26.0:src/log/log.go)
 
 Bad example `cobra`
 
+
+<br/>
+<br/>
+<br/>
+
 ## Comment your code, but only use GOOD comments
 
-Large topic (See the [Docs](https://go.dev/doc/comment)), but a few pointers:
-
-* For simple things (package, functions, vars), comments can be brief
-* Document go-routine safety if not default (vars: default no. Top level functions, default yes)
-* Favor not documenting code inside functions (code should be readable. See explicitness)
+Large topic (See the [Docs](https://go.dev/doc/comment))
 
 The `stdlib` is your friend here - follow it's lead. E.g. [strings](https://pkg.go.dev/strings)
 
-### Leverage built in tooling
+
+<br/>
+<br/>
+<br/>
+
+## Leverage built in tooling
 
 `gofumpt`
 
@@ -138,6 +168,10 @@ The `stdlib` is your friend here - follow it's lead. E.g. [strings](https://pkg.
 
 `go vet`
 
+
+<br/>
+<br/>
+<br/>
 
 ## Tests are easy to write and fast to run. You have no excuses.
 
