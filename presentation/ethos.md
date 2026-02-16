@@ -8,11 +8,11 @@ Read, learn, love, live [go proverbs](https://go-proverbs.github.io/)
 
 Watch the [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) (gophercon 2015)
 
-### Favor explicitness over implicitness (clear > clever)
+## Favor explicitness over implicitness (clear > clever)
 
 This sometimes leads to more verbosity, but as a whole the language wants you to be explicit
 
-* Beware the `interface{}` type - use only as a safety valve
+### Beware the `interface{}` type - use only as a safety valve
 
 BOO!
 
@@ -26,7 +26,7 @@ func convert(T interface{}) string {
 
 Yay!
 ```golang
-func covertInt(i int) string{
+func covertInt(i int) string {
 
 }
 
@@ -39,11 +39,11 @@ func convertUser(u User) string {
 }
 ```
 
-* error handling (vs. `panic`)
+### error handling (vs. `panic`)
 
 Convention is to return errors as the last value from a function. This forces you to handle errors states where they occur. For the love of all that is sacred don't panic in libraries and if you do INFORM POTENTIAL USERS
 
-* Only require what you actually need as inputs to functions
+### Only require what you actually need as inputs to functions
 
 ```golang
 
@@ -66,14 +66,19 @@ func SaveUser(user *User, db *sql.Db, logger *logging.Logger) error {
 
 ```
 
-* Avoid `init()` - a safety vale that I have yet to run across a valid use for.
+### Avoid `init()`
 
-### Leverage the Standard Library
+a safety vale that I have yet to run across a valid use for.
+
+## Leverage the Standard Library
 
 Don't import the kitchen sink (this isn't javascript). Re-implement if you need to (keep it local, keep it explicit)
 
+This is a no-no: 
+
 ```golang
 package toolbelt
+
 func Kebab(s string) string {
 	return strings.ToLower(splitAndJoin(s, "-"))
 }
@@ -87,7 +92,7 @@ func Lower(s string) string {
 }
 ```
 
-### Useful Zero Values
+## Useful Zero Values
 
 Built in types all have "zero" values. E.g. `bools == false`, `int == 0`. When considering state, leverage the zero value's meaning.
 
@@ -97,7 +102,7 @@ type User struct{
 }
 ```
 
-### Avoid Global state
+## Avoid Global state
 
 You can use package vars.
 
@@ -115,7 +120,7 @@ Counter example: `log` package
 
 Bad example `cobra`
 
-### Comment your code, but only use GOOD comments
+## Comment your code, but only use GOOD comments
 
 Large topic (See the [Docs](https://go.dev/doc/comment)), but a few pointers:
 
@@ -134,7 +139,7 @@ The `stdlib` is your friend here - follow it's lead. E.g. [strings](https://pkg.
 `go vet`
 
 
-### Tests are easy to write and fast to run. You have no excuses.
+## Tests are easy to write and fast to run. You have no excuses.
 
 Any file in a package directly that ends in `_test.go` will be run by:
 ```shell

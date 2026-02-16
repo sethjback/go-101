@@ -1,29 +1,29 @@
 # Why go?
 
-* Low learning curve
+## Low learning curve
 
 Mechanics of the language are explicit and easy to grok. They quickly become familiar. Opinionated formatting and great tooling.
 
-* Low Magicks (well...before 1.18 anyway)
+## Low Magicks (well...before 1.18 anyway)
 
 Go favors explicitness and readability over implicit or indirect consequences.
 
-* Great standard library
+## Great standard library
 
 Much of what you need has been provided in the `stdlib` - use it heavily, especially for anything web based.
 
-* Compiles
+## Compiles
 
 And is easy to cross compile for multiple targets.
 
-* Easy concurrency
+## Easy concurrency
 
 goroutines are efficient and safe
 
-* Performant (enough)
+## Performant (enough)
 
 
-* Easy testing
+## Easy testing
 
 
 # Why NOT Go?
@@ -39,4 +39,4 @@ goroutines are efficient and safe
 
 
 ----
-[Go Design Decisions](ethos.md)
+[Resources (Where to Start)](resources.md)
