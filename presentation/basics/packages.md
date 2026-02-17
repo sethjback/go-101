@@ -178,5 +178,81 @@ user.admin
 
 ```
 
+<br/>
+<br/>
+<br/>
+
+### Exporting functionality
+
+When exporting functionality, it is common to export a root type and add functionality via methods
+
+
+```golang
+package data
+
+type Store struct {
+    db *db.SQL
+}
+
+func NewStore(db *db.SQL) *Store {
+    return &Store{db: db}
+}
+
+func (s *Store) SaveUser(ctx context.Context, u *User) error {
+    _, err := s.db.QueryContext(ctx, query, u)
+	return err
+}
+
+func (s *Store) GetUser(ctx context.Context, u *User) (*User, error) {
+    u, err := s.db.QueryContext(ctx, query)
+	if err != nil {
+        return nil, err
+    }
+
+    return u, nil
+}
+
+```
+
+<br/>
+<br/>
+<br/>
+
+### Interfaces!!
+
+In some instances, you want to export an interface, not an actual concrete type. This allows other packages to satisfy that interface and provide different concrete logic.
+
+```golang
+package data
+
+type Store interface {
+    SaveUser(ctx context.Context, u *User) error 
+    GetUser(ctx context.Context, u *User) (*User, error)
+}
+
+func NewStore(db *db.SQL) Store {
+    return &storeImpl{db: db}
+}
+
+type storeImpl struct {
+    db *sql.DB
+}
+
+func (s *storeImpl) SaveUser(ctx context.Context, u *User) error {
+    _, err := s.db.QueryContext(ctx, query, u)
+	return err
+}
+
+func (s *storeImpl) GetUser(ctx context.Context, u *User) (*User, error) {
+    u, err := s.db.QueryContext(ctx, query)
+	if err != nil {
+        return nil, err
+    }
+
+    return u, nil
+}
+
+```
+
 ---
 [Go Module](gomod.md)
