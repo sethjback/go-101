@@ -67,4 +67,4 @@ If you want to vendor your go dependencies (`go mod vendor`) this is there all t
 For mono-repos that have a web UI / component, this is where the javascript lives. Go has a great feature that allows you to embed file systems into the binary itself, and a common pattern is to build you UI and embed it, mounting it as a website served directly from your binary.
 
 ----
-[Go Ethos](ethos.md)
+[Go Ethos](../ethos.md)
