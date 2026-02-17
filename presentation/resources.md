@@ -21,5 +21,5 @@ Level Up
 * Concurrency is not parallelism [https://go.dev/blog/waza-talk](https://go.dev/blog/waza-talk)
 * Advanced Concurrency [https://go.dev/blog/pipelines](https://go.dev/blog/pipelines)
 
-----
-[Go Ethos](ethos.md)
+---
+[Basics](basics/packages.md)
